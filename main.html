@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <title>Main Dashboard</title>
+</head>
+<body>
+  <h1>Welcome to PetrolWala Dashboard</h1>
+  <p>You are logged in.</p>
+
+  <button onclick="logout()">Logout</button>
+
+  <script>
+    // Protect page
+    if(!localStorage.getItem('token')){
+      window.location.href = "login.html";
+    }
+
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

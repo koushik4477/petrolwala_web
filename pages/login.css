@@ -1,0 +1,80 @@
+/* Scoped styles for Login page only.
+   Targets elements under .page-root to avoid global collisions. */
+
+.page-root { position: relative; min-height: 100vh; box-sizing: border-box; }
+
+/* Ensure the foreground content sits above the liquid background */
+.page-root .page-content { position: relative; z-index: 1; pointer-events: auto; }
+
+/* Centering wrapper (scoped) */
+.page-root .center { display: flex; align-items: center; justify-content: center; padding: 40px; box-sizing: border-box; }
+
+/* Card: specifically for login. Avoid using generic main.card globally. */
+.page-root .card {
+  width: 420px;
+  max-width: calc(100% - 32px);
+  margin: 48px auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  border: 1px solid rgba(7,46,46,0.04);
+  box-sizing: border-box;
+}
+
+/* Headings and lead */
+.page-root .card h1 { margin: 0 0 6px 0; font-size: 22px; }
+.page-root .card .lead { margin: 0 0 14px 0; color: #6b7f80; font-size: 14px; }
+
+/* Status messages (scoped) */
+.page-root .card .muted,
+.page-root .card .error,
+.page-root .card .success {
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+.page-root .card .muted { background: #eef7f7; color: #0b6b6b; }
+.page-root .card .success { background: #ecffef; color: #064e3b; }
+.page-root .card .error { background: #ffecec; color: #8b1a1a; }
+
+/* Form fields (scoped) */
+.page-root .card form { display: block; }
+.page-root .card label { display: block; margin-top: 10px; font-size: 13px; color: #374151; }
+.page-root .card input[type="text"],
+.page-root .card input[type="password"],
+.page-root .card input,
+.page-root .card select,
+.page-root .card textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #e6eef0;
+  box-sizing: border-box;
+  font-size: 14px;
+  background: #fff;
+}
+
+/* Primary button (scoped) */
+.page-root .card button.primary {
+  display: inline-block;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: linear-gradient(90deg,#0e6b6b,#083d3d);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 14px;
+}
+
+/* small link */
+.page-root .card .small-link { color: #0e6b6b; font-weight: 600; text-decoration: none; }
+
+/* Responsive tweak: smaller devices reduce margins */
+@media (max-width: 480px) {
+  .page-root .card { margin: 24px 12px; padding: 16px; }
+}

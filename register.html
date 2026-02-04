@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Register</title>
+  <style>
+    :root{
+      --bg: #f3f6fb;
+      --card: #ffffff;
+      --accent: #3b82f6;
+      --muted: #64748b;
+      --radius: 12px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:#0f172a}
+    .center {
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .card {
+      width:100%;
+      max-width:420px;
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:0 10px 30px rgba(2,6,23,0.08);
+      padding:28px;
+    }
+    h1{margin:0 0 12px 0;font-size:20px}
+    .lead{margin:0 0 18px 0;color:var(--muted);font-size:14px}
+    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    input[type="text"], input[type="password"]{
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid rgba(15,23,42,0.06);
+      font-size:15px;
+      margin-bottom:14px;
+    }
+    button.primary{
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:0;
+      background:linear-gradient(90deg,var(--accent), #6366f1);
+      color:white;font-weight:600;cursor:pointer;
+    }
+    .muted{color:var(--muted);font-size:13px;text-align:center;margin-top:12px}
+    .error{color:#ef4444;font-size:13px;margin-bottom:8px}
+    .success{color:#16a34a;font-size:13px;margin-bottom:8px}
+    .small-link{font-size:13px;color:var(--accent);text-decoration:underline;cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="center">
+    <main class="card" role="main" aria-labelledby="registerHeading">
+      <h1 id="registerHeading">Create an Account</h1>
+      <p class="lead">Register a new user.</p>
+
+      <div id="status" aria-live="polite"></div>
+
+      <form id="registerForm">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required />
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required />
+
+        <button type="submit" class="primary">Register</button>
+      </form>
+
+      <p class="muted">Already have an account?
+        <a href="login.html" class="small-link">Sign in</a>
+      </p>
+    </main>
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:4000/api';
+    const form = document.getElementById('registerForm');
+    const status = document.getElementById('status');
+
+    function showError(msg){
+      status.innerHTML = '<div class="error">'+msg+'</div>';
+    }
+    function showSuccess(msg){
+      status.innerHTML = '<div class="success">'+msg+'</div>';
+    }
+    function clearStatus(){ status.innerHTML = ''; }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearStatus();
+
+      const username = form.username.value.trim();
+      const password = form.password.value;
+
+      if (!username || !password) {
+        showError('Enter username and password');
+        return;
+      }
+
+      try {
+        const res = await fetch(API_BASE + '/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          showError(data.error || 'Registration failed');
+          return;
+        }
+
+        showSuccess('Account created — redirecting to login...');
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 1500);
+
+      } catch (err) {
+        console.error(err);
+        showError('Network error.');
+      }
+    });
+  </script>
+</body>
+</html>

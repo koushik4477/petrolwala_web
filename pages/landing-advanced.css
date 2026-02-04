@@ -1,0 +1,93 @@
+/* landing-advanced.css - place next to Landing.jsx */
+
+/* color system */
+:root{
+  --bg: #f6fbfb;
+  --card: #ffffff;
+  --petrol-1: #073637;
+  --petrol-2: #0e6b6b;
+  --accent: #ffb020;
+  --muted: #64748b;
+  --glass: rgba(7,46,46,0.06);
+}
+
+/* base layout */
+.pw-page{
+  min-height:100vh;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,var(--bg), #f7fdfd);
+  color:var(--petrol-1);
+  padding:28px;
+  box-sizing:border-box;
+}
+
+/* header */
+.pw-header{ display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:28px; }
+.pw-brand{ display:flex; align-items:center; gap:12px; }
+.pw-logo{ width:56px; height:56px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,var(--petrol-2),var(--petrol-1)); color:#fff; font-size:24px; box-shadow:0 8px 24px rgba(4,30,30,0.08); }
+.pw-title{ margin:0; font-size:20px; }
+.pw-tag{ font-size:13px; color:var(--muted); margin-top:3px; }
+
+.pw-nav{ display:flex; gap:12px; align-items:center; }
+.pw-link{ color:var(--petrol-2); text-decoration:none; font-weight:600; padding:6px 8px; border-radius:8px; }
+.pw-link-ghost{ background:rgba(11,107,107,0.06); }
+
+/* main hero */
+.pw-main{ display:flex; justify-content:center; align-items:flex-start; padding-top:6px; }
+.pw-hero{ width:100%; max-width:1200px; display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center; }
+@media (max-width:980px){ .pw-hero{ grid-template-columns: 1fr; } }
+
+/* left column */
+.pw-hero-left{ padding:18px 4px; }
+.pw-hero h2{ font-size:28px; margin:0 0 8px 0; letter-spacing:0.2px; }
+.pw-lead{ color:var(--muted); margin:0 0 18px 0; max-width:62ch; }
+
+/* cta group (list-like) */
+.pw-cta-group{ display:flex; flex-direction:column; gap:12px; align-items:stretch; max-width:760px; }
+@media (min-width:720px){ .pw-cta-group{ flex-direction:row; } }
+
+.pw-cta{
+  display:flex; align-items:center; gap:12px;
+  padding:14px 18px; border-radius:12px; text-decoration:none; color:inherit;
+  box-shadow:0 10px 28px var(--glass); transition: transform .14s ease, box-shadow .14s ease;
+  min-width:220px;
+  overflow:hidden;
+}
+.pw-cta:focus{ outline:3px solid rgba(14,107,107,0.14); outline-offset:4px; }
+.pw-cta:hover{ transform:translateY(-6px); box-shadow:0 20px 44px rgba(6,40,40,0.12); }
+
+/* cta variations */
+.pw-cta-primary{ background: linear-gradient(90deg,var(--petrol-2),var(--petrol-1)); color:white; }
+.pw-cta-accent{ background: linear-gradient(90deg,#0f5f6a,#0b8f6b); color:white; }
+.pw-cta-ghost{ background: linear-gradient(90deg,#0b7a9b,#0b5f8f); color:white; }
+
+/* icon area */
+.pw-icon{ width:36px; height:36px; fill:rgba(255,255,255,0.95); flex:0 0 36px; }
+.pw-cta-text{ text-align:left; }
+.pw-cta-title{ font-weight:700; font-size:16px; }
+.pw-cta-sub{ font-size:13px; color:rgba(255,255,255,0.88); margin-top:2px; }
+
+/* right visual card */
+.pw-hero-visual{ display:flex; align-items:center; justify-content:center; }
+.pw-card{ width:100%; max-width:360px; background:var(--card); border-radius:14px; padding:20px; box-shadow:0 16px 40px rgba(7,46,46,0.06); border:1px solid rgba(7,46,46,0.03); text-align:center; }
+.pw-fuel-gauge{ width:160px; height:160px; border-radius:80px; background:linear-gradient(180deg,#f7ffff,#e6fbfb); margin:0 auto 10px; position:relative; display:flex; align-items:center; justify-content:center; }
+.pw-gauge-fill{ width:70%; height:70%; border-radius:50%; background:linear-gradient(180deg,var(--petrol-2),var(--petrol-1)); box-shadow: inset 0 -10px 20px rgba(0,0,0,0.12); transform:rotate(-18deg); }
+
+/* small caption */
+.pw-visual-caption{ color:var(--muted); font-size:13px; margin-top:8px; }
+
+/* footer */
+.pw-footer{ text-align:center; color:var(--muted); margin-top:28px; font-size:13px; }
+
+/* small links row */
+.pw-links{ margin-top:12px; display:flex; gap:14px; align-items:center; }
+.pw-small{ color:var(--petrol-2); text-decoration:none; font-weight:600; }
+.pw-small-muted{ color:var(--muted); font-weight:500; }
+
+/* utility */
+.pw-cta + .pw-cta{ margin-left:0; }
+
+/* accessibility: reduce motion for users who prefer that */
+@media (prefers-reduced-motion: reduce){
+  .pw-cta, .pw-cta:hover{ transition:none; transform:none; }
+}

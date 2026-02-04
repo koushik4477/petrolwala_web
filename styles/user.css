@@ -1,0 +1,32 @@
+.user-page {
+  padding: 24px;
+}
+
+.user-nav {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.user-nav a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.fuel-cards {
+  display: flex;
+  gap: 20px;
+}
+
+.fuel-card {
+  padding: 30px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.floating-buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+}
